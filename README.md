@@ -20,6 +20,55 @@ You can start editing the page by modifying `app/page.js`. The page auto-updates
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Database Setup
+
+This project uses **Neon PostgreSQL** for data storage with **Drizzle ORM**.
+
+### Database Schema
+
+- **Users Table**: Stores user information from Clerk authentication
+- **Scripts Table**: Stores AI-generated video scripts and audio metadata
+
+### Database Operations
+
+```bash
+# Push schema changes to database
+npm run db:push
+
+# Open database studio (GUI)
+npm run db:studio
+```
+
+## Audio File Storage
+
+### File System Storage
+- Audio files are saved to: `public/audio/`
+- Accessible via: `http://localhost:3000/audio/filename.mp3`
+
+### Database Metadata Storage
+- Script content and metadata stored in Neon database
+- Audio file URLs and voice settings tracked
+- User association for script ownership
+
+## Environment Variables
+
+Create a `.env.local` file with:
+
+```env
+# Database
+NEXT_PUBLIC_DATABASE_URL=your_neon_database_url
+
+# AI Services
+NEXT_PUBLIC_GEMINI_API_KEY=your_gemini_api_key
+
+# Text-to-Speech (Optional)
+ELEVENLABS_API_KEY=your_elevenlabs_api_key
+
+# Clerk Authentication
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+CLERK_SECRET_KEY=your_clerk_secret_key
+```
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
