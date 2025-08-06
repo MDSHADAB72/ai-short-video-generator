@@ -288,7 +288,7 @@ export async function POST(request) {
       // Generate download URL
       const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 
                      `${request.headers.get('x-forwarded-proto') || 'http'}://${request.headers.get('host')}`;
-      const downloadUrl = `${baseUrl}/api/audio/download/${audioId}`;
+      const downloadUrl = `${baseUrl}/api/generate-elevenlabs-audio/download/${audioId}`;
 
       return NextResponse.json({
         success: true,
